@@ -1,21 +1,19 @@
 package com.vnazarenko.pdfattr;
 
-import org.apache.pdfbox.pdmodel.PDDocument;
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        try (PDDocument document = PDDocument.load(new FileInputStream("srcFile.pdf"))) {
-            ArrayList<String> attributes = new ArrayList<>(Arrays.asList("Алгоритмы на практике", "Даниэль Зингаро", "Алгоритмы", "Алгоритмы"));
+        String pathToFolder = "/Users/vnazaren/Отладка/iBooks - New - Debug - PDF/";
+        Manager manager = new Manager();
 
-            new Attributor().setAttributes(document, attributes);
-            new Compressor().saveCompressedPDF(document, new FileOutputStream("dstFileCompressed.pdf"));
+//        ArrayList<File> arrayList = manager.readFileNames(args[0]);
+        ArrayList<File> arrayList = manager.readFileNames(pathToFolder);
 
-        } catch (Exception ignored) {
+        for (File file : arrayList) {
+            ArrayList<String> attributes = manager.prepareAttributes(file);
+            manager.processFiles(file, attributes);
         }
     }
 
