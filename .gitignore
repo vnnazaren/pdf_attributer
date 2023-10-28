@@ -23,9 +23,12 @@
 hs_err_pid*
 replay_pid*
 
-#Mac OS
+# Mac OS
 .DS_Store
 
-#Test files
+# Test files
 *.pdf
+
+# IDEA Folder
+.idea/
 

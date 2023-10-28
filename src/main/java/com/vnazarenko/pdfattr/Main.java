@@ -1,21 +1,36 @@
 package com.vnazarenko.pdfattr;
 
-import java.io.File;
-import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        String pathToFolder = "/Users/vnazaren/Отладка/iBooks - New - Debug - PDF/";
+        Scanner scanner = new Scanner(System.in);
         Manager manager = new Manager();
 
-//        ArrayList<File> arrayList = manager.readFileNames(args[0]);
-        ArrayList<File> arrayList = manager.readFileNames(pathToFolder);
-
-        for (File file : arrayList) {
-            ArrayList<String> attributes = manager.prepareAttributes(file);
-            manager.processFiles(file, attributes);
+        while (true) {
+            PrintMenu();
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    System.out.println("Вводим путь к каталогу в котором будет обработка:");
+                    manager.checkFiles(scanner.nextLine());
+                    break;
+                case 2:
+                    System.out.println("Вводим путь к каталогу в котором будет обработка:");
+                    manager.startProcess(scanner.nextLine());
+                    break;
+                case 0:
+                    return;
+                default:
+                    System.out.println("Выберите один из пунктов меню.");
+            }
+            System.out.println();
         }
     }
 
-
+    public static void PrintMenu() {
+        System.out.println("1 - Проверяем корректность двойных тире.");
+        System.out.println("2 - Обрабатываем файлы.");
+        System.out.println("0 - Выходим из программы.");
+    }
 }
