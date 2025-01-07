@@ -13,11 +13,11 @@ public class Main {
             switch (choice) {
                 case 1:
                     System.out.println("Вводим путь к каталогу в котором будет обработка:");
-                    manager.checkFiles(scanner.nextLine());
+                    manager.checkFiles(scanner.next());
                     break;
                 case 2:
                     System.out.println("Вводим путь к каталогу в котором будет обработка:");
-                    manager.startProcess(scanner.nextLine());
+                    manager.startProcess(scanner.next());
                     break;
                 case 0:
                     return;
